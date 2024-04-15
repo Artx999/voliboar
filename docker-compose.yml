@@ -17,6 +17,7 @@ services:
       OVERRIDE_ICON: true
       MODE: survival
       DIFFICULTY: hard
+      SPAWN_PROTECTION: 0
 
       # 6245: PlaceholderAPI
       # 28140: LuckPerms
