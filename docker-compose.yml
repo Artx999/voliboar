@@ -39,9 +39,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
-      - traefik.http.routers.voliboar.entrypoints=websecure
+      #- traefik.http.routers.voliboar.entrypoints=websecure
       - traefik.http.routers.voliboar.rule=Host(`voliboar.xcraft.no`)
-      - traefik.http.routers.voliboar.service=voliboar-mc-1
+      #- traefik.http.routers.voliboar.service=voliboar-mc-1
       #- traefik.http.services.voliboar.loadbalancer.server.port=25565
 
   backups:
