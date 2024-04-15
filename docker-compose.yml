@@ -33,6 +33,7 @@ services:
       - data:/data
       - ./plugins:/plugins
     networks:
+      - default
       - proxy
     labels:
       - traefik.enable=true
