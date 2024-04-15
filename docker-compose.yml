@@ -38,6 +38,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=proxy
       - traefik.tcp.routers.voliboar.rule=HostSNI(`voliboar.xcraft.no`)
+      - traefik.tcp.routers.voliboar.tls=true
       - traefik.tcp.services.voliboar.loadbalancer.server.port=25565
 
   backups:
