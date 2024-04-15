@@ -13,7 +13,7 @@ services:
       LOG_TIMESTAMP: true
 
       MOTD: ${MOTD}
-      #ICON: ${ICON}
+      ICON: ${ICON}
       OVERRIDE_ICON: true
       MODE: survival
       DIFFICULTY: hard
