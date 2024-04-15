@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  mc:
+    image: itzg/minecraft-server
+    ports:
+      - 25566:25565
+    environment:
+      EULA: true
+      TYPE: PURPUR
+      MEMORY: 4G
+      TZ: ${TIME_ZONE}
+      LOG_TIMESTAMP: true
+
+      MOTD: ${MOTD}
+      ICON: ${ICON}
+      OVERRIDE_ICON: true
+      MODE: survival
+      DIFFICULTY: hard
+
+      # 6245: PlaceholderAPI
+      # 28140: LuckPerms
+      # 82528: TabTPS
+      # 83557: BlueMap
+      # 62325: GSit
+      SPIGET_RESOURCES: "6245,28140,82528,83557,62325"
+      OPS: Artx999 # Remove when perms are set up properly
+      # Set up LuckPerms by importing a predefined setup from setup.json.gz
+      RCON_CMDS_STARTUP:  |-
+        lp import setup
+
+    volumes:
+      - data:/data
+      - ./plugins:/plugins
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.voliboar.entrypoints=websecure
+      - traefik.http.routers.voliboar.rule=Host(`voliboar.xcraft.no`)
+      - traefik.http.routers.voliboar.service=voliboar
+      #- traefik.http.services.voliboar.loadbalancer.server.port=25565
+
+  backups:
+    image: itzg/mc-backup
+    depends_on:
+      mc:
+        condition: service_healthy
+    environment:
+      BACKUP_INTERVAL: 1d
+      PRUNE_BACKUPS_DAYS: 7
+      RCON_HOST: mc
+      # Since this service waits for mc to be healthy, no initial delay is needed
+      INITIAL_DELAY: 0
+      TZ: ${TIME_ZONE}
+    volumes:
+      - data:/data:ro
+      - backups:/backups
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+  backups:

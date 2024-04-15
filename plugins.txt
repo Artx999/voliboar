@@ -1,0 +1,8 @@
+OpenAudioMc: https://openaudiomc.net/
+BlueMap: https://hangar.papermc.io/Blue/BlueMap
+	BlueMapAreaControl: https://github.com/TechnicJelle/BlueMapAreaControl
+	BlueMap-Auth: https://github.com/Chicken/Auth/tree/master/BlueMap/Integration
+	BlueMap-Chat: https://github.com/Chicken/Auth/tree/master/BlueMap/Chat
+TabTPS: https://hangar.papermc.io/jmp/TabTPS
+GSit: https://hangar.papermc.io/Gecolay/GSit
+UnifiedMetrics: https://docs.cubxity.dev/docs/intro
