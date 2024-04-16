@@ -37,11 +37,8 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
-      - traefik.tcp.routers.voliboar.rule=HostSNI(`voliboar.xcraft.no`)
+      - traefik.tcp.routers.voliboar.rule=HostSNI(`*`)
       - traefik.tcp.routers.voliboar.entrypoints=minecraft
-      - traefik.tcp.routers.voliboar.service=voliboar
-      - traefik.tcp.routers.voliboar.tls.passthrough=true
-      - traefik.tcp.services.voliboar.loadbalancer.server.port=25565
 
   backups:
     image: itzg/mc-backup
