@@ -32,6 +32,9 @@ services:
       - data:/data
       - ./plugins:/plugins
 
+    networks:
+      - mc-router
+
   backups:
     image: itzg/mc-backup
     depends_on:
@@ -51,3 +54,7 @@ services:
 volumes:
   data:
   backups:
+
+networks:
+  mc-router:
+    external: true
