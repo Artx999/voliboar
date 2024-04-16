@@ -51,8 +51,7 @@ services:
   router:
     image: itzg/mc-router
     depends_on:
-      mc:
-        condition: service_healthy
+      - mc
     environment:
       MAPPING: |
         voliboar.xcraft.no=mc:25565
