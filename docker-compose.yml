@@ -48,16 +48,6 @@ services:
       - data:/data:ro
       - backups:/backups
 
-  router:
-    image: itzg/mc-router
-    depends_on:
-      - mc
-    environment:
-      MAPPING: |
-        voliboar.xcraft.no=mc:25565
-    ports:
-      - "25565:25565"
-
 volumes:
   data:
   backups:
