@@ -39,7 +39,7 @@ services:
       - traefik.docker.network=proxy
       - traefik.tcp.routers.voliboar.rule=HostSNI(`voliboar.xcraft.no`)
       - traefik.tcp.routers.voliboar.entrypoints=minecraft
-      - traefik.tcp.routers.voliboar.tls.certresolver=myresolver
+      - traefik.tcp.routers.voliboar.tls.certresolver=letsencrypt
 
   backups:
     image: itzg/mc-backup
