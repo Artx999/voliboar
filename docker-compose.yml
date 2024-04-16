@@ -37,8 +37,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=proxy
-      - traefik.tcp.routers.voliboar.rule=HostSNI(`*`)
+      - traefik.tcp.routers.voliboar.rule=HostSNI(`voliboar.xcraft.no`)
       - traefik.tcp.routers.voliboar.entrypoints=minecraft
+      - traefik.tcp.routers.voliboar.tls.certresolver=myresolver
 
   backups:
     image: itzg/mc-backup
