@@ -33,6 +33,7 @@ services:
       - ./plugins:/plugins
 
     networks:
+      - default
       - mc-router
 
   backups:
