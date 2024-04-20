@@ -22,7 +22,8 @@ services:
       # 82528: TabTPS
       # 83557: BlueMap
       # 62325: GSit
-      SPIGET_RESOURCES: "6245,28140,82528,83557,62325"
+      # 60623: Sleep most
+      SPIGET_RESOURCES: "6245,28140,82528,83557,62325,60623"
       OPS: Artx999 # Remove when perms are set up properly
       # Set up LuckPerms by importing a predefined setup from setup.json.gz
       RCON_CMDS_STARTUP:  |-
