@@ -1,0 +1,278 @@
+# Config for ChatItem
+# For info visit
+# Spigotmc: https://www.spigotmc.org/resources/19064/
+# Discord: https://discord.gg/yng5PPf62h
+ 
+# Version info, DON'T TOUCH
+config-version: 13
+ 
+# By default, it's in "both" mode.
+#
+# Available mode :
+# - "both" : Prevent chat editing with multiple plugins by using all ways possible to edit the chat.
+# - "auto" : Choose automatically between all available according to actual plugins.
+# - "packet" : The working system for 1.4's ChatItem version (and older)
+#        It was working with lot of others chat plugin, specially those who made hover text.
+# - "chat" : New system which works without other chat plugin, which is simpler and with lower
+#        amount of possible issues.
+# You can replace 'both' by another mode that should correspond to what you want.
+# If you don't know which one use, come on discord (link at begin of config or in spigotmc)
+manager: "both"
+
+#General configuration
+general:
+  # The placeholders to display an item in chat.
+  placeholders:
+    - "[i]"
+    - "{i}"
+    - "[item]"
+    - "{item}"
+  other-placeholders:
+    # Show what is in the head
+    helmet:
+      # Enable it or not
+      enabled: true
+      # Disallow showing empty item
+      deny-if-no-item: true
+      # Placeholders to use in chat
+      keys:
+      - "[head]"
+      - "{head}"
+    # Show the CHESTPLATE not the enderchest or whatever
+    chestplate:
+      enabled: true
+      deny-if-no-item: true
+      keys:
+      - "[chest]"
+      - "{chest}"
+    # Show leggings
+    leggings:
+      enabled: true
+      deny-if-no-item: true
+      keys:
+      - "[legs]"
+      - "{legs}"
+    # Show what is their feets
+    boots:
+      enabled: false
+      deny-if-no-item: true
+      keys:
+      - "[feet]"
+      - "{feet}"
+    inventory:
+      enabled: true
+      deny-if-no-item: true
+      # Time in seconds before the placeholder expire
+      time-expire: 1800
+      keys:
+      - "[inv]"
+      - "{inv}"
+    enderchest:
+      enabled: true
+      deny-if-no-item: true
+      # Time in seconds before the placeholder expire
+      time-expire: 1800
+      keys:
+      - "[ec]"
+      - "{ec}"
+
+  # The format of the item placeholders.
+  name-format: "&b&l&o{name}{amount}&r"
+  # The format of the {amount} placeholder.
+  # {times} correspond to amount of item
+  amount-format: " x{times}"
+  # Should we use the translated item name or the custom name of an item
+  color-if-already-colored: true
+  # Should we always show the amount, even if it's just one
+  force-add-amount: true
+  #  Should we let the message through, as-is (with the placeholder not replaced)
+  # if the user doesn't have permission or if the user is on cooldown?
+  let-message-through: true
+  # Should we allow users to show their hands off
+  deny-if-no-item: false
+  #  If the above (deny-if-no-item) is set to false, what should the placeholder be replaced with?
+  # Bellow you can configure that behaviour.
+  hand:
+    # Should we completely disable users being able to show their hands off
+    disabled: false
+    # The name of the hand chat message.
+    name: "&b&l&o{display-name}&b&l&o's hand"
+    # The lore of the hand chat message.
+    tooltip:
+      - "&7Nothing to see here"
+      - "&7Just the empty hand of {display-name}."
+  # Manage what is showed for bugged client.
+  # Specially lunar client with old version (1.7)
+  bugged_client:
+    # You can try to show the most informations as possible:
+    # item name & lore. You will not see specific item meta-data
+    # Or just show the bugged tooltip.
+    #
+    # Action available:
+    # nothing: no hover
+    # item: only try to get values from item
+    # tooltip: only show tooltip
+    # show_both: show item & tooltip below
+    action: "show_both"
+    tooltip:
+      - "&7Failed to parse item for your client"
+  
+  # Format used with using /chatitem show
+  command-format: "&6%name%'s item is %item%"
+
+  #  Here you can set when the players should see the no-permission message (defined in the 'Messages' section bellow).
+  # 'normal' dictates whether the user should see the message when using the placeholder in normal chat, and 'command'
+  # sets whether the user should see it when using the placeholder in a command.
+  show-no-permission-message:
+    normal: true
+    command: false
+  # Manage permission to use placeholders
+  permission:
+    enabled: false
+    name: "chatitem.use"
+  #  Here you can set the limit on how many placeholders a user is allowed to use inside a message.
+  # Allowing too many placeholders can result in client crashes.
+  limit: 8
+  #  The cooldown, in seconds, between allowing players to send messages with items. Setting this to 0
+  # will remove the cooldown entirely.
+  cooldown: 60
+  # All items that are not allowed to be showed
+  ignored_items:
+  - "SOME_ITEM"
+  # Check if the plugin have update
+  check-update: true
+  language: "en_gb"
+  sub-commands:
+    broadcast: true
+    show: true
+ 
+ 
+#  Messages section. You can disable any of them by simply leaving them empty, like this: ""
+messages:
+  # The message sent if showing off hands is disabled and the user isn't holding an item.
+  # Only works if 'General.deny-if-no-item' is set to true!
+  deny-message: "&c&lYou have no item in hand!"
+  # The message sent after the configuration file is successfully reloaded.
+  reload-success: "&b&lSuccessful reload!"
+  # The message sent if the player is on cooldown from sending a placeholder.
+  cooldown-message: "&c&lYou can only use items in chat once a minute! You have {remaining} left!"
+  # The message sent if the no permission messages are enabled and the user doesn't have permission to send an item placeholder.
+  no-permission: "&c&lI'm sorry, but you are not allowed to use the placeholder in chat!"
+  # The message sent if the player uses more placeholders than configured in one message.
+  limit-message: "&c&lYou can only add 8 item placeholders per message!"
+  # When trying to show item that is ignored
+  ignored-item: "&cThis item is not allowed to be showed."
+  # All message about the update of the plugin
+  join-update:
+    message: "&cA new version of ChatItem is available. &aClick here to download."
+    hover: "&6Click to go to spigot page !"
+  # For all commands ran by console by reserved to player
+  only-players: "&cOnly players can run this command"
+  # The player is not found
+  player-not-found: "&cThe player %arg% can't be founded."
+  # All messages for the /chatitem command
+  chatitem-cmd:
+    help:
+    - "&6/chatitem admin : &7Manage some options"
+    - "&6/chatitem links : &7See all links which are usefull"
+    links:
+      begin: "&aAll usefull links: "
+      list:
+        1:
+          message: "\n&7- &eSpigotmc updates"
+          hover: "&6Click to go to spigot page !"
+          link: "https://www.spigotmc.org/resources/19064/"
+        2:
+          message: " "
+        3:
+          message: "&7(Original author: &aDadus33"
+          hover: "&6See &aDadus33&6's profile"
+          link: "https://www.spigotmc.org/members/10224/"
+        4:
+          message: "&7, "
+        5:
+          message: "&7Maintainer: &aElikill58&7)"
+          hover: "&6See &aElikill58&6's profile"
+          link: "https://www.spigotmc.org/members/310762/"
+        6:
+          message: "\n&7- &6Support on discord"
+          hover: "&6Click to open discord !"
+          link: "https://discord.gg/yng5PPf62h"
+  # All messages in admin inventory
+  admin-inv:
+    name: "ChatItem - Admin"
+    close: "Close"
+    # Generic lores for options items
+    amount-lore:
+    - "&aLeft-click: &6+1"
+    - "&aRight-click: &6-1"
+    bool-lore:
+    - "&7Click to enable/disable"
+    # Name of options items
+    color-if-already-colored: "&6Color if already colored: %state%"
+    deny-no-item: "&6Deny without item: %state%"
+    hand-disabled: "&6Hand disabled: %state%"
+    limit-per-message: "&6Limit per message: &a%state%"
+    cooldown: "&6Cooldown: &a%state%"
+    debug: "&6Debug: &a%state%"
+    check-update: "&6Check updates: &a%state%"
+    language:
+      name: "&6Change language"
+      lore: "&7Actual: &e%name%"
+    # Change name and lore of all managers
+    manager:
+      both:
+        name: "&6Use both manager&7: &aPacket & Chat"
+        lore:
+        - "&aTry both manager. Very usefull when you have lot of plugins"
+        - "&eIt enable to use ChatItem for all type of messages"
+        - ""
+        - "&7Since ChatItem v2.1"
+      auto:
+        name: "&6Choose automatically"
+        lore:
+        - "&aChoose automatically between managers available"
+        - "&aaccording to actuals plugins."
+        - "&eThis is better when you are not using own plugin."
+        - ""
+        - "&7Since ChatItem v2.1"
+      packet:
+        name: "&6Intercept packets"
+        lore:
+        - "&aChange message sent directly by intercepting packet"
+        - "&aCan use &6ProtocolLib &aif present."
+        - "&cCan have error with &e/cir &c!"
+        - ""
+        - "&7Originally made until ChatItem v1.4"
+      chat:
+        name: "&6Change basic message"
+        lore:
+        - "&aVery quick and usefull for server without plugin message !"
+        - "&aIt enable to use ChatItem without packet reading."
+        - "&eIt's more optimized than others manager"
+        - ""
+        - "&7Since ChatItem v2.0"
+      # The item that show the actual manager
+      actual:
+        name: '&6Actual manager: %manager%'
+        lore: []
+  #  All the fields bellow shold be translated in your own language. Those will be used in the {remaining} format of the cooldown message.
+  # You should leave a space as a PREFIX as we will add a number in front of them
+  seconds: " seconds"
+  minutes: " minutes"
+  hours: " hours"
+  enabled: "&aEnabled"
+  disabled: "&cDisabled"
+  seeinv_not_found: "&cImpossible to find this inventory. Are you coming too late ?"
+  inventory:
+    name: "%cible%'s inventory"
+    chat: "%cible%'s inventory"
+    hover: "&7Click to see inventory"
+  enderchest:
+    name: "%cible%'s enderchest"
+    chat: "%cible%'s enderchest"
+    hover: "&7Click to see enderchest"
+
+# If ChatItem send message using DiscordSRV
+# This option will be ignored if you don't have it
+discord-srv-send-our: true

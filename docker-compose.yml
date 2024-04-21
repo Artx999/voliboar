@@ -3,6 +3,8 @@ version: "3.8"
 services:
   mc:
     image: itzg/minecraft-server
+    #ports:
+    #  - "25565:25565"
     environment:
       EULA: true
       TYPE: PURPUR
@@ -23,7 +25,9 @@ services:
       # 83557: BlueMap
       # 62325: GSit
       # 60623: Sleep most
-      SPIGET_RESOURCES: "6245,28140,82528,83557,62325,60623"
+      # 1997: ProtocolLib
+      # 19064: ChatItem
+      SPIGET_RESOURCES: "6245,28140,82528,83557,62325,60623,1997,19064"
       OPS: Artx999 # Remove when perms are set up properly
       # Set up LuckPerms by importing a predefined setup from setup.json.gz
       RCON_CMDS_STARTUP:  |-
