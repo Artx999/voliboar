@@ -135,7 +135,7 @@ general:
   limit: 8
   #  The cooldown, in seconds, between allowing players to send messages with items. Setting this to 0
   # will remove the cooldown entirely.
-  cooldown: 60
+  cooldown: 10
   # All items that are not allowed to be showed
   ignored_items:
   - "SOME_ITEM"
